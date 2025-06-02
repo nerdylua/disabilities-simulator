@@ -1,15 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 import { ArrowRight, Eye, Ear, Hand, Brain, ChevronRight, BookOpen, Wrench, Users, CheckCircle, Target, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AuroraText } from "@/components/ui/aurora-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import Link from "next/link"
 import { RainbowButton } from "@/components/ui/rainbow-button"
+import Link from "next/link"
 
 const features = [
   {
@@ -73,46 +72,10 @@ const stats = [
   { number: "4.5:1", label: "Minimum contrast ratio (WCAG AA)" }
 ]
 
-const testimonials = [
-  {
-    quote: "This simulator opened my eyes to how difficult navigation can be. It's changed how I design interfaces.",
-    author: "Sarah Chen",
-    role: "UX Designer",
-    company: "Tech Corp"
-  },
-  {
-    quote: "We use DisabilityLens in our accessibility training. It creates immediate understanding and empathy.",
-    author: "Michael Rodriguez",
-    role: "Accessibility Manager",
-    company: "Digital Agency"
-  },
-  {
-    quote: "The visual impairment simulation helped me understand why screen readers are so important.",
-    author: "Alex Thompson",
-    role: "Frontend Developer", 
-    company: "StartupXYZ"
-  }
-]
-
 export function HomePage() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [counts, setCounts] = useState({
-    people: 0,
-    population: 0,
-    websites: 0,
-    contrast: 0
-  })
-
   const { scrollY } = useScroll()
   const y1 = useTransform(scrollY, [0, 300], [0, 50])
   const y2 = useTransform(scrollY, [0, 300], [0, -50])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [])
 
   return (
     <div className="min-h-screen bg-background grid-background">

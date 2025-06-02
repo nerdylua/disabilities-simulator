@@ -11,7 +11,6 @@ interface AnimatedCounterProps {
 }
 
 export function AnimatedCounter({ target, duration = 2000, className = "" }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0)
   const [displayValue, setDisplayValue] = useState("0")
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -63,7 +62,6 @@ export function AnimatedCounter({ target, duration = 2000, className = "" }: Ani
       }
       
       setDisplayValue(displayNum + suffix)
-      setCount(current)
     }, duration / steps)
 
     return () => clearInterval(timer)

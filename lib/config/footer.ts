@@ -27,7 +27,7 @@ export const footerConfig: FooterConfig = {
   },
   sections: [],
   socialLinks: [
-    { label: "GitHub", href: "https://github.com/disabilities-simulator", icon: "Github" },
+    { label: "GitHub", href: "https://github.com/nerdylua/disabilities-simulator", icon: "Github" },
     { label: "Twitter", href: "https://x.com/nerdylua", icon: "Twitter" },
     { label: "Email", href: "mailto:nihaalsp7@gmail.com", icon: "Mail" },
   ],

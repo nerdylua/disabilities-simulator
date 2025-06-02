@@ -80,7 +80,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-background grid-background">
       {/* Hero Section */}
-      <section className="relative px-6 pt-10 pb-16 sm:pt-18 sm:pb-24 overflow-hidden">
+      <section className="relative px-6 pt-7 pb-16 sm:pt-14 sm:pb-24 overflow-hidden">
         {/* Parallax background elements */}
         <motion.div 
           style={{ y: y1 }}

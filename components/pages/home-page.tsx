@@ -103,9 +103,9 @@ export function HomePage() {
             transition={{ duration: 0.8 }}
           >
             <Badge variant="outline" className="mb-6 text-sm px-3 py-1 text-primary border-primary/20">
-              ✨ Revolutionizing Digital Accessibility →
+              ✨ Revolutionizing Digital Accessibility
             </Badge>
-            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl mb-8 leading-[1.1] py-2">
+            <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl mb-8 leading-[1.1] py-0">
               Experience the{" "}
               <AuroraText 
                 className="inline-block py-1"

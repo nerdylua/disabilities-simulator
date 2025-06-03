@@ -40,11 +40,11 @@
   --color-ring: var(--ring);
   
   /* Rainbow button colors */
-  --color-1: 0 85% 60%;
-  --color-2: 255 85% 60%;
-  --color-3: 155 85% 60%;
-  --color-4: 55 85% 60%;
-  --color-5: 305 85% 60%;
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

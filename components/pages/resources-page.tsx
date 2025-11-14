@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, ExternalLink, Download, Users, Code, Lightbulb, FileText, Headphones, Eye } from "lucide-react"
+import { BookOpen, ExternalLink, Users, Code, Lightbulb, FileText, Sun, Eye } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -138,10 +138,10 @@ const internalResources = [
     type: "Simulation"
   },
   {
-    title: "Hearing Accessibility Simulation", 
-    description: "Understand challenges faced by users with hearing impairments",
-    href: "/hearing",
-    icon: Headphones,
+    title: "Environmental & Glare Simulation", 
+    description: "Understand how glare, tunnel vision, and color filters impact perception",
+    href: "/visual",
+    icon: Sun,
     type: "Simulation"
   },
   {
@@ -294,7 +294,7 @@ export function ResourcesPage() {
                           href={item.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors"
+                          className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors dark:text-black"
                         >
                           Visit Resource →
                         </a>
@@ -305,73 +305,6 @@ export function ResourcesPage() {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* Downloads Section */}
-        <section className="mb-20">
-          <Card className="bg-primary/5 border-primary/20">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl text-primary mb-4">Downloadable Resources</CardTitle>
-              <CardDescription className="text-base">
-                Print-friendly guides and checklists for offline reference
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div className="text-center p-6 border border-border rounded-lg">
-                  <Download className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">WCAG 2.1 Checklist</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Complete compliance checklist</p>
-                  <Button variant="outline" size="sm">
-                    Download PDF
-                  </Button>
-                </div>
-                <div className="text-center p-6 border border-border rounded-lg">
-                  <FileText className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Quick Reference Guide</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Essential accessibility tips</p>
-                  <Button variant="outline" size="sm">
-                    Download PDF
-                  </Button>
-                </div>
-                <div className="text-center p-6 border border-border rounded-lg">
-                  <Code className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="font-semibold mb-2">Code Examples</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Accessible component patterns</p>
-                  <Button variant="outline" size="sm">
-                    Download ZIP
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Newsletter/Updates */}
-        <section className="text-center">
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-2xl">Stay Updated</CardTitle>
-              <CardDescription>
-                Get notified when we add new resources and accessibility updates
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-2 border border-border rounded-md text-sm"
-                />
-                <Button className="whitespace-nowrap">
-                  Subscribe for Updates
-                </Button>
-              </div>
-              <p className="text-xs text-muted-foreground mt-3">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
-            </CardContent>
-          </Card>
         </section>
       </div>
     </div>

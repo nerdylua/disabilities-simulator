@@ -134,7 +134,7 @@ export function GuidelinesPage() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Badge variant="outline" className="mb-6 text-primary border-primary/20">
-            Accessibility Guidelines
+          ✨ Accessibility Guidelines
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
             Building <span className="text-primary">Accessible</span> Digital Experiences
@@ -312,7 +312,7 @@ export function GuidelinesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/tools" 
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary/90 transition-colors dark:text-black"
               >
                 Try Our Accessibility Tools
               </a>

@@ -23,7 +23,7 @@ export interface FooterConfig {
 export const footerConfig: FooterConfig = {
   brand: {
     title: "DisabilityLens",
-    description: "Fostering empathy and awareness through interactive disability simulations. Creating a more inclusive digital world, one experience at a time."
+    description: "Creating a more inclusive digital world, one experience at a time."
   },
   sections: [],
   socialLinks: [

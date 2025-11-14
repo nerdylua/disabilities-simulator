@@ -17,7 +17,6 @@ export const headerConfig: HeaderConfig = {
   navigationLinks: [
     { label: "Home", href: "/" },
     { label: "Visual", href: "/visual" },
-    { label: "Hearing", href: "/hearing" },
     { label: "Motor", href: "/motor" },
     { label: "Cognitive", href: "/cognitive" },
     { label: "Guidelines", href: "/guidelines" },

@@ -1,14 +1,19 @@
 "use client"
 
+import { useEffect, useMemo, useState } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowRight, Eye, Ear, Hand, Brain, ChevronRight, BookOpen, Wrench, Users, CheckCircle, Target, Heart } from "lucide-react"
+import { ArrowRight, Eye, Sun as SunIcon, Hand, Brain, ChevronRight, BookOpen, Wrench, Users, CheckCircle, Target, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { AuroraText } from "@/components/ui/aurora-text"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { RainbowButton } from "@/components/ui/rainbow-button"
+import { ShimmerButton } from "@/components/ui/shimmer-button"
 import Link from "next/link"
+import { useTheme } from "next-themes"
+
+import { cn } from "@/lib/utils"
 
 const features = [
   {
@@ -19,10 +24,10 @@ const features = [
     gradient: "from-blue-500 to-cyan-500"
   },
   {
-    icon: Ear,
-    title: "Hearing Impairments", 
-    description: "Understand challenges in audio-dependent interfaces",
-    href: "/hearing",
+    icon: SunIcon,
+    title: "Environmental Factors", 
+    description: "Experience glare, brightness, and tunnel vision effects",
+    href: "/visual",
     gradient: "from-purple-500 to-pink-500"
   },
   {
@@ -76,6 +81,28 @@ export function HomePage() {
   const { scrollY } = useScroll()
   const y1 = useTransform(scrollY, [0, 300], [0, 50])
   const y2 = useTransform(scrollY, [0, 300], [0, -50])
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const shimmerStyles = useMemo(() => {
+    const theme = mounted ? resolvedTheme : "light"
+    if (theme === "dark") {
+      return {
+        background: "rgba(148, 163, 184, 0.18)",
+        shimmerColor: "#f8fafc",
+        className: "border-white/25 text-slate-100",
+      }
+    }
+    return {
+      background: "linear-gradient(135deg, rgba(226,232,240,0.92), rgba(248,250,252,0.96))",
+      shimmerColor: "#94a3b8",
+      className: "border-slate-200 text-slate-900 shadow-sm hover:shadow-md",
+    }
+  }, [mounted, resolvedTheme])
 
   return (
     <div className="min-h-screen bg-background grid-background">
@@ -127,11 +154,15 @@ export function HomePage() {
                   Start with Visual Simulation <ArrowRight className="ml-2 h-4 w-4" />
                 </RainbowButton>
               </Link>
-              <Button variant="outline" className="text-base px-4 py-2 h-9" asChild>
-                <Link href="/guidelines">
-                  Learn Guidelines <BookOpen className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <Link href="/guidelines">
+                <ShimmerButton
+                  background={shimmerStyles.background}
+                  shimmerColor={shimmerStyles.shimmerColor}
+                  className={cn("text-base px-8 py-4 h-9 border", shimmerStyles.className)}
+                >
+                  Learn Guidelines <BookOpen className="ml-2 h-6 w-6" />
+                </ShimmerButton>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -203,34 +234,35 @@ export function HomePage() {
                     ease: "easeInOut"
                   }}
                 >
-                  <Link href={feature.href}>
-                    <Card className="h-full group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 bg-gradient-to-br from-background to-muted/50 overflow-hidden">
-                      <CardHeader className="text-center pb-4">
-                        <motion.div 
-                          className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${feature.gradient} flex items-center justify-center`}
-                          whileHover={{ rotate: 360, scale: 1.1 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <feature.icon className="h-8 w-8 text-white" />
-                        </motion.div>
-                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                          {feature.title}
-                        </CardTitle>
-                        <CardDescription className="text-center">
-                          {feature.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="pt-0">
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-between hover:bg-primary/10 transition-colors"
-                        >
+                  <Card className="h-full group hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-background to-muted/50 overflow-hidden">
+                    <CardHeader className="text-center pb-4">
+                      <motion.div 
+                        className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${feature.gradient} flex items-center justify-center`}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <feature.icon className="h-8 w-8 text-white" />
+                      </motion.div>
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                        {feature.title}
+                      </CardTitle>
+                      <CardDescription className="text-center">
+                        {feature.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="pt-0">
+                      <Button 
+                        variant="ghost" 
+                        className="w-full justify-between hover:bg-primary/10 transition-colors"
+                        asChild
+                      >
+                        <Link href={feature.href} className="flex w-full items-center justify-between">
                           Try Simulation
-                          <ChevronRight className="h-4 w-4 hover:translate-x-1 transition-transform" />
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                          <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </motion.div>
             ))}
@@ -277,35 +309,35 @@ export function HomePage() {
                     ease: "easeInOut"
                   }}
                 >
-                  <Link href={resource.href}>
-                    <Card className="h-full group hover:shadow-lg transition-shadow cursor-pointer overflow-hidden">
-                      <CardHeader>
-                        <div className="flex items-center gap-3 mb-4">
-                          <motion.div 
-                            className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center"
-                            whileHover={{ rotate: 15, scale: 1.1 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <resource.icon className="h-6 w-6 text-primary" />
-                          </motion.div>
-                          <Badge variant="secondary" className="text-xs">
-                            {resource.type}
-                          </Badge>
-                        </div>
-                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
-                          {resource.title}
-                        </CardTitle>
-                        <CardDescription>
-                          {resource.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <Button variant="outline" className="w-full hover:bg-primary hover:text-white transition-colors">
+                  <Card className="h-full group hover:shadow-lg transition-shadow overflow-hidden">
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-4">
+                        <motion.div 
+                          className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center"
+                          whileHover={{ rotate: 15, scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <resource.icon className="h-6 w-6 text-primary" />
+                        </motion.div>
+                        <Badge variant="secondary" className="text-xs">
+                          {resource.type}
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                        {resource.title}
+                      </CardTitle>
+                      <CardDescription>
+                        {resource.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <Button variant="outline" className="w-full hover:bg-primary hover:text-white transition-colors" asChild>
+                        <Link href={resource.href}>
                           Explore Now →
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               </motion.div>
             ))}
@@ -399,12 +431,12 @@ export function HomePage() {
             Start your accessibility journey today with our interactive simulations and comprehensive resources.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-2 border-foreground text-foreground hover:bg-foreground hover:text-background dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-primary font-semibold transition-all duration-200" asChild>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-2 border-foreground text-foreground hover:bg-foreground hover:text-background dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black font-semibold transition-all duration-200" asChild>
               <Link href="/visual">
                 Begin with Simulations <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-2 border-foreground text-foreground hover:bg-foreground hover:text-background dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-primary font-semibold transition-all duration-200" asChild>
+            <Button size="lg" variant="outline" className="text-lg px-8 py-3 border-2 border-foreground text-foreground hover:bg-foreground hover:text-background dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-black font-semibold transition-all duration-200" asChild>
               <Link href="/guidelines">
                 View Guidelines <BookOpen className="ml-2 h-5 w-5" />
               </Link>

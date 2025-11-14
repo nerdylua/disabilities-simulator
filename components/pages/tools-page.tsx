@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Link from "next/link"
 
 // Color contrast calculation functions
 function getLuminance(hex: string): number {
@@ -278,14 +279,14 @@ const quickActions = [
     title: "Screen Reader Test",
     description: "Test with NVDA (Windows) or VoiceOver (Mac)",
     icon: Type,
-    action: "#",
+    action: "/guidelines",
     external: false
   },
   {
     title: "Keyboard Navigation",
-    description: "Navigate this page using only Tab, Enter, and arrow keys",
+    description: "Navigate this page using only Tab, Enter and arrow keys",
     icon: CheckCircle,
-    action: "#",
+    action: "/motor",
     external: false
   }
 ]
@@ -297,7 +298,7 @@ export function ToolsPage() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Badge variant="outline" className="mb-6 text-primary border-primary/20">
-            Accessibility Tools
+          ✨ Accessibility Tools
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
             Test and Improve <span className="text-primary">Accessibility</span>
@@ -337,13 +338,15 @@ export function ToolsPage() {
                       href={action.action}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors"
+                      className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors dark:text-black"
                     >
                       Try Tool →
                     </a>
                   ) : (
-                    <Button className="w-full" variant="outline">
-                      Test Now
+                    <Button className="w-full" variant="outline" asChild>
+                      <Link href={action.action}>
+                        Test Now
+                      </Link>
                     </Button>
                   )}
                 </CardContent>

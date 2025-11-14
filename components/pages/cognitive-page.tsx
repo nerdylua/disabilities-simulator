@@ -52,6 +52,60 @@ const overlayColorClasses = [
   "bg-pink-500/90 text-white",
 ]
 
+function ConcentrationOverlay({ level }: { level: number }) {
+  const [mounted, setMounted] = useState(false)
+
+  const overlays = useMemo(() => {
+    if (level <= 0) return []
+
+    const intensity = Math.min(1, Math.max(0, level / 100))
+    const count = Math.min(10, Math.max(2, Math.round(intensity * 8)))
+    const baseDelay = Math.max(0.25, 1 - intensity)
+
+    return Array.from({ length: count }).map((_, index) => ({
+      message: overlayMessages[(index + Math.floor(intensity * overlayMessages.length)) % overlayMessages.length],
+      colorClass: overlayColorClasses[index % overlayColorClasses.length],
+      top: 4 + Math.random() * 80,
+      left: Math.random() * 70 + (index % 2 === 0 ? 5 : 20),
+      delay: index * baseDelay,
+      duration: Math.max(3.5, 6 - intensity * 2) + Math.random() * 1.5,
+    }))
+  }, [level])
+
+  useEffect(() => {
+    setMounted(true)
+    return () => setMounted(false)
+  }, [])
+
+  if (!mounted || overlays.length === 0) return null
+
+  return createPortal(
+    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
+      {overlays.map(({ message, top, left, delay, duration, colorClass }, index) => (
+        <motion.span
+          key={`${message}-${index}`}
+          className={cn(
+            "absolute rounded-lg px-4 py-2 text-xs font-semibold shadow-lg ring-1 backdrop-blur-md",
+            colorClass
+          )}
+          style={{ top: `${top}%`, left: `${left}%` }}
+          initial={{ opacity: 0, y: -16, scale: 0.9 }}
+          animate={{
+            opacity: [0, 1, 0],
+            y: [-16, 0, -16],
+            scale: [0.9, 1.08, 0.92],
+            x: [0, -4, 0, 4, 0],
+          }}
+          transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {message}
+        </motion.span>
+      ))}
+    </div>,
+    document.body
+  )
+}
+
 const MAX_TILES = 10
 const FLASH_DURATION = 240
 const FLASH_GAP = 360
@@ -272,60 +326,6 @@ export function CognitivePage() {
     setActiveTab(tab)
     resetAdjustments()
   }
-
-function ConcentrationOverlay({ level }: { level: number }) {
-  const [mounted, setMounted] = useState(false)
-
-  const overlays = useMemo(() => {
-    if (level <= 0) return []
-
-    const intensity = Math.min(1, Math.max(0, level / 100))
-    const count = Math.min(10, Math.max(2, Math.round(intensity * 8)))
-    const baseDelay = Math.max(0.25, 1 - intensity)
-
-    return Array.from({ length: count }).map((_, index) => ({
-      message: overlayMessages[(index + Math.floor(intensity * overlayMessages.length)) % overlayMessages.length],
-      colorClass: overlayColorClasses[index % overlayColorClasses.length],
-      top: 4 + Math.random() * 80,
-      left: Math.random() * 70 + (index % 2 === 0 ? 5 : 20),
-      delay: index * baseDelay,
-      duration: Math.max(3.5, 6 - intensity * 2) + Math.random() * 1.5,
-    }))
-  }, [level])
-
-  useEffect(() => {
-    setMounted(true)
-    return () => setMounted(false)
-  }, [])
-
-  if (!mounted || overlays.length === 0) return null
-
-  return createPortal(
-    <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
-      {overlays.map(({ message, top, left, delay, duration, colorClass }, index) => (
-        <motion.span
-          key={`${message}-${index}`}
-          className={cn(
-            "absolute rounded-lg px-4 py-2 text-xs font-semibold shadow-lg ring-1 backdrop-blur-md",
-            colorClass
-          )}
-          style={{ top: `${top}%`, left: `${left}%` }}
-          initial={{ opacity: 0, y: -16, scale: 0.9 }}
-          animate={{
-            opacity: [0, 1, 0],
-            y: [-16, 0, -16],
-            scale: [0.9, 1.08, 0.92],
-            x: [0, -4, 0, 4, 0],
-          }}
-          transition={{ duration, delay, repeat: Infinity, ease: "easeInOut" }}
-        >
-          {message}
-        </motion.span>
-      ))}
-    </div>,
-    document.body
-  )
-}
 
   const displayText = useMemo(() => {
     return simulationActive ? scrambleText(normalText, dyslexiaIntensity[0]) : normalText

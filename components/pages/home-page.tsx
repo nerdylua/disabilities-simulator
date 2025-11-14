@@ -149,9 +149,9 @@ export function HomePage() {
             </p>
             
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-center mb-16">
-              <Link href="/visual" className="w-full sm:w-auto flex justify-center">
+              <Link href="/cognitive" className="w-full sm:w-auto flex justify-center">
                 <RainbowButton className="w-full sm:w-auto text-base px-2 py-2 h-9 sm:px-3">
-                  Start with Visual Simulation <ArrowRight className="ml-2 h-4 w-4" />
+                  Start with Cognitive Simulation <ArrowRight className="ml-2 h-4 w-4" />
                 </RainbowButton>
               </Link>
               <Link href="/guidelines" className="w-full sm:w-auto flex justify-center">

@@ -364,7 +364,7 @@ export function ToolsPage() {
             <CardContent className="max-w-4xl mx-auto">
               <Tabs defaultValue="browser" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="browser">Browser Extensions</TabsTrigger>
+                  <TabsTrigger value="browser">Extensions</TabsTrigger>
                   <TabsTrigger value="testing">Testing Tools</TabsTrigger>
                   <TabsTrigger value="validators">Validators</TabsTrigger>
                 </TabsList>

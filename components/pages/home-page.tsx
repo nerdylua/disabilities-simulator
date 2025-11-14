@@ -148,17 +148,20 @@ export function HomePage() {
               Build more inclusive digital experiences with comprehensive accessibility education.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-              <Link href="/visual">
-                <RainbowButton className="text-base px-4 py-2 h-9">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-center mb-16">
+              <Link href="/visual" className="w-full sm:w-auto flex justify-center">
+                <RainbowButton className="w-full sm:w-auto text-base px-2 py-2 h-9 sm:px-3">
                   Start with Visual Simulation <ArrowRight className="ml-2 h-4 w-4" />
                 </RainbowButton>
               </Link>
-              <Link href="/guidelines">
+              <Link href="/guidelines" className="w-full sm:w-auto flex justify-center">
                 <ShimmerButton
                   background={shimmerStyles.background}
                   shimmerColor={shimmerStyles.shimmerColor}
-                  className={cn("text-base px-8 py-4 h-9 border", shimmerStyles.className)}
+                  className={cn(
+                    "w-full sm:w-auto text-base px-4 py-4 h-9 border text-center sm:px-6",
+                    shimmerStyles.className
+                  )}
                 >
                   Learn Guidelines <BookOpen className="ml-2 h-6 w-6" />
                 </ShimmerButton>

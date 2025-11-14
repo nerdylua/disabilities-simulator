@@ -1,38 +1,52 @@
-# UI is done as of now for main page, add functionalities and ui for other pages
+# DisabilityLens
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DisabilityLens is a Next.js application that helps teams experience common accessibility barriers first-hand. It recreates visual, motor, and cognitive disabilities so designers, engineers, and product stakeholders can test their interfaces with empathy.
+
+## Features
+
+- **Interactive simulations**  
+  - Visual barriers: color vision loss, low vision, brightness/contrast shifts, tunnel vision overlays.  
+  - Motor challenges: tremor-driven cursor, precision tasks, delayed interactions.  
+  - Cognitive load: dyslexia effects, memory sequences, ambient distractions.
+- **Accessibility playbooks** – Practical WCAG guidance, tools, and resources in one spot.
+- **Dark/light theming** with theme-aware UI polish.
+- **Responsive, motion-rich UI** built with Tailwind CSS v4, shadcn-inspired components, and Framer Motion.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# open http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Useful scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Script            | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start the local development server       |
+| `npm run build`   | Create a production build                |
+| `npm run start`   | Serve the production build locally       |
+| `npm run lint`    | Run linting against the project files    |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+- Next.js 15 (App Router)
+- React with functional components & hooks
+- Tailwind CSS v4 + CSS custom effects
+- Framer Motion for animations
+- TypeScript
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/                # Next.js routes, layout, theming
+components/pages/   # Page-level UI + simulations
+components/ui/      # Reusable UI primitives
+lib/config/         # Header/footer/navigation configuration
+public/             # Static assets
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing & Feedback
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is still evolving. If you’d like to report an issue, improve a simulation, or contribute a new accessibility scenario, feel free to open a discussion or PR.

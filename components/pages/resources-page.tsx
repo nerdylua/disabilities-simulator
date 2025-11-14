@@ -190,7 +190,7 @@ export function ResourcesPage() {
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center mb-16">
           <Badge variant="outline" className="mb-6 text-primary border-primary/20">
-            Accessibility Resources
+          ✨ Accessibility Resources
           </Badge>
           <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl mb-6">
             Complete <span className="text-primary">Accessibility</span> Resource Center

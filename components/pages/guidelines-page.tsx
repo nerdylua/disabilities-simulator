@@ -259,7 +259,7 @@ export function GuidelinesPage() {
             <CardContent className="max-w-4xl mx-auto">
               <Tabs defaultValue="automated" className="w-full">
                 <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="automated">Automated Testing</TabsTrigger>
+                  <TabsTrigger value="automated">Testing</TabsTrigger>
                   <TabsTrigger value="manual">Manual Testing</TabsTrigger>
                   <TabsTrigger value="user">User Testing</TabsTrigger>
                 </TabsList>

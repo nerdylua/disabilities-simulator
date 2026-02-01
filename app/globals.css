@@ -154,7 +154,6 @@
   html {
     /* Prevent overscroll in all directions */
     overscroll-behavior: none;
-    overflow-x: hidden;
   }
 
   body {
